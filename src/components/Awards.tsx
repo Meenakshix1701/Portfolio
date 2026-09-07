@@ -11,7 +11,7 @@ const awards = [
     year: "2026",
     gradient: "from-[#F5E2E3] to-[#ECCBC9]",
     pdfUrl: "/Hormuz_Chokepoint_Policy_Brief.pdf",
-    pdfLabel: "View Policy Brief (PDF)",
+    pdfLabel: "View poster",
   },
   {
     icon: Award,
@@ -68,7 +68,7 @@ export function Awards() {
                       className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#8A4B52] bg-white/80 hover:bg-white hover:text-[#6e373d] px-3 py-1.5 rounded-lg border border-[#ECCBC9] shadow-sm transition-all hover:shadow mb-4 w-fit group"
                     >
                       <FileText size={13} className="text-[#8A4B52]" />
-                      <span>{award.pdfLabel || "View Policy Brief (PDF)"}</span>
+                      <span>{award.pdfLabel || "View poster"}</span>
                       <ExternalLink size={11} className="opacity-60 group-hover:opacity-100 transition-opacity" />
                     </a>
                   )}
