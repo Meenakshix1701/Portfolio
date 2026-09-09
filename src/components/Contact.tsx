@@ -129,7 +129,7 @@ export function Contact() {
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/70 border border-white/90 backdrop-blur-md w-fit mb-6 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               <span className="text-[#8A4B52] text-xs font-semibold tracking-widest uppercase">
-                Available for Roles &amp; Consulting
+                Get In Touch
               </span>
             </div>
 
