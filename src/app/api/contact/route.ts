@@ -36,15 +36,32 @@ export async function POST(req: Request) {
     }
 
     // Configure Nodemailer transporter
-    const transporter = nodemailer.createTransport({
-      host: smtpHost,
-      port: smtpPort,
-      secure: smtpPort === 465, // true for 465, false for 587 or others
-      auth: {
-        user: smtpUser,
-        pass: smtpPass,
-      },
-    });
+    const isGmail = smtpHost.toLowerCase().includes("gmail");
+    const transporter = nodemailer.createTransport(
+      isGmail
+        ? {
+            service: "gmail",
+            auth: {
+              user: smtpUser,
+              pass: smtpPass,
+            },
+            tls: {
+              rejectUnauthorized: false,
+            },
+          }
+        : {
+            host: smtpHost,
+            port: smtpPort,
+            secure: smtpPort === 465,
+            auth: {
+              user: smtpUser,
+              pass: smtpPass,
+            },
+            tls: {
+              rejectUnauthorized: false,
+            },
+          }
+    );
 
     const sanitizedMessage = message.replace(/\n/g, "<br/>");
 
