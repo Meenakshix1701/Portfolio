@@ -47,32 +47,25 @@ export function Contact() {
     setStatus("submitting");
 
     try {
-      const response = await fetch("https://formsubmit.co/ajax/meenakshibansal1701@gmail.com", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Accept: "application/json",
         },
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
           message: formData.message,
-          _subject: `Portfolio Message from ${formData.name}`,
-          _template: "table",
-          _captcha: "false",
         }),
       });
 
       const data = await response.json();
 
-      if (response.ok && (data.success === "true" || data.success === true)) {
-        setStatus("success");
-      } else if (data.message && data.message.toLowerCase().includes("activation")) {
-        // On very first submission, FormSubmit sends an activation link to the recipient
+      if (response.ok && data.success) {
         setStatus("success");
       } else {
         setStatus("error");
-        setErrorMessage(data.message || "Failed to deliver message. Please try emailing directly.");
+        setErrorMessage(data.error || "Failed to send message via SMTP. Please check your SMTP settings.");
       }
     } catch (err) {
       console.error("Form submission error:", err);
